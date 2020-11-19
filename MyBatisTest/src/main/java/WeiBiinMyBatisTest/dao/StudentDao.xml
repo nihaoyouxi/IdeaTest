@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="WeiBiinMyBatisTest.dao.StudentDao">
+<!--<mapper namespace="a">-->
+
+    <resultMap id="stuMap" type="WeiBiinMyBatisTest.bean.Student">
+        <result column="studentId" property="id"></result>
+        <result column="classId" property="classId"></result>
+        <result column="name" property="name"></result>
+    </resultMap>
+
+    <select id="selectStudentes" resultType="WeiBiinMyBatisTest.bean.Student">
+    <!--<select id="b" resultType="WeiBiinMyBatisTest.bean.Student">-->
+        <!--要执行的 sql 语句-->
+        select studentId,classId,name from studentes
+    </select>
+
+    <select id="selectStudentById" resultMap="stuMap">
+        select studentId,classId,name from studentes where studentId=#{studentId}
+    </select>
+
+    <select id="selectStudentByStuIdAndClaId" resultType="WeiBiinMyBatisTest.bean.Student">
+        select studentId,classId,name from studentes where studentId=#{studentId} or classId=#{classId}
+    </select>
+
+    <insert id="insertStudent" >
+        insert into studentes(classId,name) values(#{classId},#{name});
+    </insert>
+
+    <select id="testSelect" resultType="WeiBiinMyBatisTest.bean.Student">
+        select studentId,classId,name from studentes where name like '%' #{value} '%'
+    </select>
+
+</mapper>
