@@ -8,6 +8,7 @@ public class Student {
     private int id;
     private int classId;
     private String name;
+    private String className;
 
     public Student(int studentId, int classId, String name) {
         this.id = studentId;
